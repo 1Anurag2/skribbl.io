@@ -191,8 +191,10 @@ const Lobby: React.FC = () => {
             </button>
             <button className="flex-1 bg-[#3b82f6] hover:bg-[#2563eb] text-white rounded font-bold text-3xl border-b-4 border-r-4 border-black active:border-0 active:translate-y-1 flex items-center justify-center gap-2"
               onClick={() => {
-                navigator.clipboard.writeText(roomId);
-                alert('Room code copied to clipboard!');
+                if (roomId) {
+                  navigator.clipboard.writeText(roomId);
+                  alert('Room code copied to clipboard!');
+                }
               }}
               style={{ textShadow: '2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}
             >
