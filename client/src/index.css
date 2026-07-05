@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+@theme {
+  --font-sans: 'Fredoka One', cursive, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: 'Fredoka One', cursive, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #2649a1;
+  /* Custom doodle-like pattern */
+  background-image: 
+    linear-gradient(45deg, #1d3c8c 25%, transparent 25%, transparent 75%, #1d3c8c 75%, #1d3c8c), 
+    linear-gradient(45deg, #1d3c8c 25%, transparent 25%, transparent 75%, #1d3c8c 75%, #1d3c8c);
+  background-size: 60px 60px;
+  background-position: 0 0, 30px 30px;
+  min-height: 100vh;
+}

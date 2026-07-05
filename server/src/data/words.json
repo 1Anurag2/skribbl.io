@@ -1,0 +1,12 @@
+{
+  "English": {
+    "Animals": ["cat", "dog", "elephant", "lion", "tiger", "bear", "monkey", "rabbit", "deer", "wolf", "fox", "zebra", "giraffe", "panda", "koala", "kangaroo"],
+    "Objects": ["table", "chair", "computer", "phone", "bottle", "glass", "plate", "spoon", "fork", "knife", "television", "radio", "clock", "watch", "camera"],
+    "All": ["apple", "car", "tree", "sun", "house", "banana", "cat", "dog", "computer", "mouse", "keyboard", "phone", "pencil", "book", "bag"]
+  },
+  "Hindi": {
+    "Animals": ["billi", "kutta", "hathi", "sher", "baagh", "bhalu", "bandar", "khargosh", "hiran", "bhediya", "lomdi", "zebra", "giraffe", "panda", "koala", "kangaroo"],
+    "Objects": ["mez", "kursi", "computer", "phone", "botal", "gilas", "thali", "chammach", "kanta", "chaku", "tv", "radio", "ghadi", "watch", "camera"],
+    "All": ["seb", "gadi", "ped", "suraj", "ghar", "kela", "billi", "kutta", "computer", "mouse", "keyboard", "phone", "pencil", "kitab", "bag"]
+  }
+}
