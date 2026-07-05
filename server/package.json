@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/server.ts",
+    "build": "tsc && npx shx mkdir -p dist/server/src/data && npx shx cp -r src/data/* dist/server/src/data/",
+    "start": "node dist/server/src/server.js",
     "dev": "nodemon src/server.ts"
   },
   "keywords": [],
@@ -22,6 +23,7 @@
     "@types/express": "^5.0.6",
     "@types/node": "^26.1.0",
     "nodemon": "^3.1.14",
+    "shx": "^0.4.0",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3"
   }

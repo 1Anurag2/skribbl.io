@@ -19,6 +19,12 @@ export const registerChatEvents = (io: Server, socket: Socket) => {
     const roomId = getRoomId();
     if (!roomId) return;
 
+    const room = roomService.getRoom(roomId);
+    if (!room) return;
+
+    const player = room.getPlayer(socket.id);
+    if (!player) return;
+
     const isCorrect = gameService.handleGuess(io, roomId, socket.id, text);
 
     const message: ChatMessage = {
@@ -30,13 +36,22 @@ export const registerChatEvents = (io: Server, socket: Socket) => {
       isCorrectGuess: isCorrect
     };
 
-    io.to(roomId).emit(SocketEvents.CHAT_MESSAGE, message);
-
     if (isCorrect) {
-      // Broadcast updated scores
-      const room = roomService.getRoom(roomId);
-      if (room) {
-        room.broadcastState(io, 'SCORES_UPDATED');
+      // This is the "guessed the word!" system message, broadcast to everyone
+      io.to(roomId).emit(SocketEvents.CHAT_MESSAGE, message);
+      room.broadcastState(io, 'SCORES_UPDATED');
+    } else {
+      // Normal chat message
+      if (player.hasGuessedCorrectly || player.isDrawer) {
+        // Send only to players who also know the word (drawer + players who guessed correctly)
+        room.getPlayersList().forEach(p => {
+          if (p.hasGuessedCorrectly || p.isDrawer) {
+            io.to(p.id).emit(SocketEvents.CHAT_MESSAGE, message);
+          }
+        });
+      } else {
+        // Player hasn't guessed yet, broadcast to everyone
+        io.to(roomId).emit(SocketEvents.CHAT_MESSAGE, message);
       }
     }
   });
