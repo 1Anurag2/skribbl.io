@@ -15,7 +15,7 @@ This is a full-stack clone of the popular game [Skribbl.io](https://skribbl.io).
 
 In this game, players join a room, take turns drawing a given word on a shared canvas, and the others race against the clock to type the correct guess in the chat.
 
-**Live Demo**: [skribbl-io-umber.vercel.app](skribbl-io-umber.vercel.app) *(Replace with your actual link)*
+**Live Demo**: [skribbl-io-umber.vercel.app](https://skribbl-io-umber.vercel.app) 
 
 ---
 
