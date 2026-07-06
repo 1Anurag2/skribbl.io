@@ -43,7 +43,7 @@ const Leaderboard: React.FC = () => {
   const sortedPlayers = [...roomState.players].sort((a, b) => b.score - a.score);
 
   return (
-    <div className="w-64 bg-white border-r hidden md:flex flex-col h-full shadow-lg z-10">
+    <div className="w-full lg:w-64 bg-white border-b-4 lg:border-b-0 lg:border-r-4 border-gray-200 flex flex-col h-full shadow-lg z-10 shrink-0">
       <div className="p-4 font-bold border-b bg-indigo-50 text-indigo-800 shadow-sm">
         Players & Leaderboard
       </div>

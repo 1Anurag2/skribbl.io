@@ -62,10 +62,10 @@ const Lobby: React.FC = () => {
   const settings = roomState.settings;
 
   return (
-    <div className="flex flex-col h-screen max-w-7xl mx-auto p-4 md:p-8">
+    <div className="flex flex-col lg:h-screen min-h-screen max-w-7xl mx-auto p-2 md:p-4 lg:p-8">
       {/* Header Bar */}
-      <div className="bg-white border-4 border-black rounded-t-xl flex justify-between items-center p-3 font-sans font-bold shadow-[0_4px_0_0_#000] z-10 mb-2">
-        <div className="flex items-center gap-4">
+      <div className="bg-white border-4 border-black rounded-t-xl flex flex-wrap justify-between items-center p-2 lg:p-3 font-sans font-bold shadow-[0_4px_0_0_#000] z-10 mb-2 gap-2">
+        <div className="flex items-center gap-2 lg:gap-4">
           <div className="w-16 h-16 rounded-full flex items-center justify-center bg-gray-200 border-2 border-black overflow-hidden shadow-inner relative">
             {player?.avatar ? (
               <img src={player.avatar} alt={player.name} className="w-full h-full object-cover" />
@@ -93,14 +93,14 @@ const Lobby: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex-1 flex overflow-hidden border-4 border-black rounded-b-xl shadow-[0_8px_0_0_#000] bg-white">
+      <div className="flex-1 flex flex-col lg:flex-row lg:overflow-hidden border-4 border-black rounded-b-xl shadow-[0_8px_0_0_#000] bg-white">
         {/* Left: Leaderboard */}
-        <div className="w-64 border-r-4 border-black bg-[#dae0e6] overflow-y-auto">
+        <div className="w-full lg:w-64 border-b-4 lg:border-b-0 lg:border-r-4 border-black bg-[#dae0e6] overflow-y-auto h-48 lg:h-auto shrink-0">
           <Leaderboard />
         </div>
 
         {/* Middle: Settings */}
-        <div className="flex-1 bg-[#2f3640] p-6 text-white font-sans overflow-y-auto flex flex-col">
+        <div className="flex-1 bg-[#2f3640] p-4 lg:p-6 text-white font-sans overflow-y-auto flex flex-col shrink-0 min-h-[350px]">
           <div className="space-y-4 mb-6">
             <div className="flex justify-between items-center">
               <label className="font-bold flex items-center gap-2"><span className="text-xl">👤</span> Players</label>
@@ -204,7 +204,7 @@ const Lobby: React.FC = () => {
         </div>
 
         {/* Right: Chat */}
-        <div className="w-80 border-l-4 border-black">
+        <div className="w-full lg:w-80 border-t-4 lg:border-t-0 lg:border-l-4 border-black h-80 lg:h-auto shrink-0 flex flex-col">
           <ChatBox isDrawer={false} />
         </div>
       </div>

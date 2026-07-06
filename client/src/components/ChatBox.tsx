@@ -43,7 +43,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ isDrawer }) => {
   };
 
   return (
-    <div className="w-80 bg-white border-l flex flex-col h-full shadow-lg">
+    <div className="w-full lg:w-80 bg-white flex flex-col h-full shadow-lg">
       <div className="p-4 font-bold border-b bg-indigo-50 text-indigo-800 shadow-sm z-10">
         Chat & Guesses
       </div>

@@ -76,7 +76,7 @@ const Game: React.FC = () => {
   const isDrawer = currentPlayer?.isDrawer || false;
 
   return (
-    <div className="flex flex-col h-screen bg-gray-100">
+    <div className="flex flex-col h-screen min-h-screen bg-gray-100">
       {/* Header */}
       <header className="bg-white p-4 shadow flex justify-between items-center z-10">
         <div className="flex flex-col">
@@ -90,12 +90,14 @@ const Game: React.FC = () => {
         <Timer time={time} />
       </header>
 
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
         {/* Sidebar Leaderboard */}
-        <Leaderboard />
+        <div className="lg:w-64 w-full h-48 lg:h-auto shrink-0">
+          <Leaderboard />
+        </div>
 
         {/* Main Game Area */}
-        <div className="flex-1 flex flex-col relative items-center justify-center p-4">
+        <div className="flex-1 flex flex-col relative items-center justify-center p-2 lg:p-4 shrink-0 min-h-[300px] lg:min-h-0">
           
           {roomState.gamePhase === GamePhase.WORD_SELECTION && (
             <div className="absolute inset-0 bg-black/50 z-20 flex items-center justify-center rounded-lg m-4">
@@ -165,7 +167,9 @@ const Game: React.FC = () => {
         </div>
 
         {/* Chat Area */}
-        <ChatBox isDrawer={isDrawer} />
+        <div className="w-full lg:w-80 h-64 lg:h-auto shrink-0 border-t-4 lg:border-t-0 lg:border-l-4 border-gray-200">
+          <ChatBox isDrawer={isDrawer} />
+        </div>
       </div>
       <VotekickModal roomId={roomId || ''} />
     </div>
