@@ -15,7 +15,7 @@ This is a full-stack clone of the popular game [Skribbl.io](https://skribbl.io).
 
 In this game, players join a room, take turns drawing a given word on a shared canvas, and the others race against the clock to type the correct guess in the chat.
 
-**Live Demo**: [https://your-skribbl-clone.vercel.app](https://your-skribbl-clone.vercel.app) *(Replace with your actual link)*
+**Live Demo**: [skribbl-io-umber.vercel.app](skribbl-io-umber.vercel.app) *(Replace with your actual link)*
 
 ---
 
@@ -90,7 +90,3 @@ npm install
 npm run dev
 ```
 *The app will be running at http://localhost:5173*
-
----
-
-> **Note to Recruiters:** I am actively looking for software engineering roles. If you found this project interesting, I'd love to chat! Feel free to reach out to me on [LinkedIn](https://linkedin.com/in/your-profile) or via email at your.email@example.com.
