@@ -91,13 +91,9 @@ const Game: React.FC = () => {
       </header>
 
       <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
-        {/* Sidebar Leaderboard */}
-        <div className="lg:w-64 w-full h-48 lg:h-auto shrink-0">
-          <Leaderboard />
-        </div>
-
+        
         {/* Main Game Area */}
-        <div className="flex-1 flex flex-col relative items-center justify-center p-2 lg:p-4 shrink-0 min-h-[300px] lg:min-h-0">
+        <div className="order-1 lg:order-2 w-full lg:flex-1 flex flex-col relative items-center justify-center p-2 lg:p-4 shrink-0 min-h-[300px] lg:min-h-0 z-10">
           
           {roomState.gamePhase === GamePhase.WORD_SELECTION && (
             <div className="absolute inset-0 bg-black/50 z-20 flex items-center justify-center rounded-lg m-4">
@@ -166,9 +162,17 @@ const Game: React.FC = () => {
           
         </div>
 
-        {/* Chat Area */}
-        <div className="w-full lg:w-80 h-64 lg:h-auto shrink-0 border-t-4 lg:border-t-0 lg:border-l-4 border-gray-200">
-          <ChatBox isDrawer={isDrawer} />
+        {/* Mobile Side-by-Side Wrapper */}
+        <div className="order-2 flex flex-row w-full flex-1 lg:contents min-h-[40vh] lg:min-h-0">
+          {/* Sidebar Leaderboard */}
+          <div className="lg:order-1 lg:w-64 w-1/2 h-full lg:h-auto shrink-0 border-r-2 lg:border-r-0 border-gray-300">
+            <Leaderboard />
+          </div>
+
+          {/* Chat Area */}
+          <div className="lg:order-3 w-1/2 lg:w-80 h-full lg:h-auto shrink-0 lg:border-l-4 border-gray-200 bg-white">
+            <ChatBox isDrawer={isDrawer} />
+          </div>
         </div>
       </div>
       <VotekickModal roomId={roomId || ''} />

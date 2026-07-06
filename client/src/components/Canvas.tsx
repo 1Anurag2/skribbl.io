@@ -31,6 +31,16 @@ const Canvas: React.FC<CanvasProps> = ({ isDrawer }) => {
           onMouseMove={draw}
           onMouseUp={stopDrawing}
           onMouseLeave={stopDrawing}
+          onTouchStart={startDrawing}
+          onTouchMove={(e) => {
+            // Prevent default scrolling when drawing on canvas
+            if (isDrawer) {
+              e.preventDefault();
+            }
+            draw(e);
+          }}
+          onTouchEnd={stopDrawing}
+          onTouchCancel={stopDrawing}
           className={`bg-white ${isDrawer ? 'cursor-crosshair' : 'cursor-default'}`}
           style={{ width: '100%', height: 'auto', touchAction: 'none' }}
         />

@@ -74,39 +74,58 @@ export const useCanvas = (isDrawer: boolean) => {
     };
   }, [socket, history]);
 
-  // Drawer event handlers
-  const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  const getCoordinates = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return { x: 0, y: 0 };
+    const rect = canvas.getBoundingClientRect();
+    
+    let clientX, clientY;
+    
+    if ('touches' in e && e.touches.length > 0) {
+      clientX = e.touches[0].clientX;
+      clientY = e.touches[0].clientY;
+    } else if ('changedTouches' in e && (e as React.TouchEvent).changedTouches.length > 0) {
+      clientX = (e as React.TouchEvent).changedTouches[0].clientX;
+      clientY = (e as React.TouchEvent).changedTouches[0].clientY;
+    } else {
+      clientX = (e as React.MouseEvent).clientX;
+      clientY = (e as React.MouseEvent).clientY;
+    }
+    
+    // Scale coordinates if canvas style width/height differs from actual width/height
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    
+    return {
+      x: (clientX - rect.left) * scaleX,
+      y: (clientY - rect.top) * scaleY
+    };
+  };
+
+  const startDrawing = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
     if (!isDrawer || !socket || !canvasRef.current) return;
     setIsDrawing(true);
     
-    const canvas = canvasRef.current;
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
+    const { x, y } = getCoordinates(e);
     const startPoint: Point = { x, y };
     const data: StrokeData = { start: startPoint, end: startPoint, color, size: brushSize };
     
     socket.emit(SocketEvents.DRAW_START, data);
     
-    const ctx = canvas.getContext('2d');
+    const ctx = canvasRef.current.getContext('2d');
     if (ctx) {
       drawDot(ctx, startPoint, color, brushSize);
     }
   };
 
-  const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  const draw = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
     if (!isDrawer || !isDrawing || !socket || !canvasRef.current) return;
     
-    const canvas = canvasRef.current;
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
+    const { x, y } = getCoordinates(e);
     const point: Point = { x, y };
     socket.emit(SocketEvents.DRAW_MOVE, point);
     
-    const ctx = canvas.getContext('2d');
+    const ctx = canvasRef.current.getContext('2d');
     if (ctx) {
       ctx.lineTo(x, y);
       ctx.stroke();
